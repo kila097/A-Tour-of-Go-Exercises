@@ -1,6 +1,6 @@
 # Go
 
-**Note**: Theses notes are basically copied from [A Tour of Go](https://go.dev/tour/list).
+**Note**: These notes are basically copied from [A Tour of Go](https://go.dev/tour/list).
 
   
 
