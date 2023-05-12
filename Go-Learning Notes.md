@@ -1082,3 +1082,44 @@ A nill `error` denotes a success, a non-niil `error` denotes failure.
 
 
 
+
+
+
+
+### Readers
+
+
+
+The `io.Reader` interface represents the read end of a stream of data.
+
+It has a `Read` method:
+
+```go
+func (T) Read(b []byte) (n int, err error)
+```
+
+`Read` populates the given byte slice with data and returns the number of bytes populated and an error value. `io.EOF` error is returned when the stream ends.
+
+Example: consume output 8 bytes at a time
+
+```go
+func main() {
+    r := strings.NewReader("Hello, Reader!")
+    
+    b := make([]byte, 8)
+    
+    for {
+        n, err := r.Read(b)
+        fmt.Printf("n = %v err = %v b = %v\n", n, err, b)
+        fmt.Printf("b[:n] = %q\n", b[:n])
+        if err == io.EOF {
+            break
+        }
+    }
+}
+```
+
+
+
+Common pattern: use an `io.Reader` to wrap another `io.Reader`, modifying the stream in some way.
+
